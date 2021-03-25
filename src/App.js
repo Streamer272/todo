@@ -24,7 +24,7 @@ const App = () => {
 	const loadTasks = () => {
 		console.log("Loading tasks...");
 
-		for (const taskData of JSON.parse(getCookie("tasks"))) {
+		for (const taskData of JSON.parse(getCookie("tasks") || "[]")) {
 			const currentTask = new Task(taskData.name, taskData.description, deleteTask);
 			let updatedTasks = tasks;
 			updatedTasks.push(currentTask);
@@ -47,15 +47,14 @@ const App = () => {
 		setCookie("tasks", JSON.stringify(tasksToBeWrittenInCookies));*/
 	}
 
-	window.onload = loadTasks();
-	//setInterval(saveTasks, 10000);
-	saveTasks();
+	loadTasks();  // loads tasks
+	setInterval(saveTasks, 10000);
 
 	return (
 		<div>
-			{tasks.map((task) => {
+			{ tasks.map((task) => {
 				return task;
-			})}
+			}) }
 		</div>
 	);
 }
