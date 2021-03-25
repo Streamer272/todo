@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Home } from "./components/home";
-import { CreateTask } from "./components/createTask"
+import { Home } from "./components/Home";
+import { CreateTask } from "./components/CreateTask";
 
 
 const App = () => {

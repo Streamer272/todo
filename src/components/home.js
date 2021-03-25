@@ -1,39 +1,40 @@
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 // Components
-import { Task } from "./task";
+import { Task } from "./Task";
 // Images
 import addImage from "../images/add.png";
 
 
 const Home = () => {
-	const [tasks, setTasks] = useState([]);
 	const [cookies, setCookie, removeCookie] = useCookies(["data"]);
 
-	const getCookie = (name) => {
-		return name === "*" ? cookies : cookies[name];
+	const getTasks = () => {
+		return cookies["tasks"] || [];
 	}
 
+    const setTasks = (object) => {
+        setCookie("tasks", object);
+    }
+
 	const deleteTask = (task) => {
-		if (tasks.includes(task)) {
+		if (getTasks().includes(task)) {
 			console.log("Deleting task " + task + "...");
-			const updatedTasks = tasks.splice(tasks.indexOf(task), 1);
-			setCookie("tasks", JSON.stringify(updatedTasks))
+
+			const updatedTasks = getTasks().splice(getTasks().indexOf(task), 1);
 			setTasks(updatedTasks);
 		}
 	}
 
 	const loadTasks = () => {
 		console.log("Loading tasks...");
-        const tasksInCookies = getCookie("tasks") || [];
+        const tasks = getTasks();
 
-        for (const taskData of tasksInCookies) {
-            addTask(
-                <Task taskName={ taskData.name } taskDescription={ taskData.description } />
-            );
+        for (const taskData of tasks) {
+            addTask(taskData);
         }
 
-        console.log(tasks);
+        console.log(getTasks());
 	}
 
 	const saveTasks = () => {
@@ -41,19 +42,20 @@ const Home = () => {
 
 		let tasksData = [];
 
-		for (const t of tasks) {
+		for (const t of getTasks()) {
 			tasksData.push({
 				name: t.name,
 				description: t.description
 			});
 		}
 
-		setCookie("tasks", JSON.stringify(tasksData));
+		setTasks(tasksData);
 	}
 
 	const addTask = (task) => {
         console.log("Adding task " + task);
-		const updatedTasks = tasks;
+        
+		const updatedTasks = getTasks();
 		updatedTasks.push(task);
 		setTasks(updatedTasks);
 	}
@@ -68,8 +70,8 @@ const Home = () => {
 			</button>
 
             <div>
-                {tasks.map((task) => {
-                    console.log("Task: " + task);
+                {getTasks().map((task) => {
+                    console.log("Mapping task: " + task);
                     return <Task taskName={ task.name } taskDescription={ task.description } />;
                 })}
             </div>
