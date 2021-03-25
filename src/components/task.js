@@ -1,6 +1,6 @@
 import { useState } from "react";
 // Images
-import deleteImage from "../images/delete.png";
+import DeleteImage from "../images/delete.png";
 
 
 const Task = ({ taskName = "Task Name", taskDescription = "Task description", deleteCallback }) => {
@@ -17,7 +17,7 @@ const Task = ({ taskName = "Task Name", taskDescription = "Task description", de
             <h1 style={{textAlign: "center", marginTop: "-0.225%"}}>{ name }</h1>
             <p style={{textAlign: "center", marginTop: "-1.8%"}}>{ description }</p>
             <button style={{float: "right", width: "1.25%", height: "2.25%"}} onClick={ DeleteTask }>
-                <img src={ deleteImage } alt="Delete Task"/>
+                <img src={ DeleteImage } alt="Delete Task"/>
             </button>
         </div>
     )

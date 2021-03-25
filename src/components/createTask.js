@@ -9,13 +9,13 @@ const CreateTask = () => {
         const taskName = document.getElementById("taskName").value;
         const taskDescription = document.getElementById("taskDescription").value;
 
-        const updatedTasks = cookies["tasks"];
-        updatedTasks.push({
+        const tasks = cookies["tasks"] || [];
+        tasks.push({
             name: taskName,
             description: taskDescription
         });
 
-        setCookie("tasks", updatedTasks);
+        setCookie("tasks", tasks);
 
         console.log(cookies);
         window.location = "/";
