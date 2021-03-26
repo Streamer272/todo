@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { useCookies } from "react-cookie";
 
 
 const CreateTask = () => {
-	const [cookies, setCookie, removeCookie] = useCookies(["data"]);
+	const [cookies, setCookie] = useCookies(["data"]);
 
     const submit = () => {
         const taskName = document.getElementById("taskName").value;

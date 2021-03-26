@@ -3,13 +3,13 @@ import { useState } from "react";
 import DeleteImage from "../images/delete.png";
 
 
-const Task = ({ taskName = "Task Name", taskDescription = "Task description", deleteCallback }) => {
-    const [name, setName] = useState(taskName);
-    const [description, setDescription] = useState(taskDescription);
+const Task = ({ taskData, deleteCallback }) => {
+    const [name, setName] = useState(taskData.name);
+    const [description, setDescription] = useState(taskData.description);
 
     const DeleteTask = () => {
-        console.log("Deleing task from task...");
-        deleteCallback(this);
+        console.log("Deleting task from task...");
+        deleteCallback(taskData);
     }
 
     return (
