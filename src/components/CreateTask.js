@@ -27,7 +27,7 @@ const CreateTask = () => {
             <input placeholder="Task Description"
                 style={{borderRadius: "5px", border: "3px solid black", fontSize: "30px", marginBottom: "1%"}} id="taskDescription" /><br />
             <button type="submit"
-                style={{borderRadius: "5px", border: "1px solid black", fontSize: "35px", marginLeft: "9%"}} onClick={ submit }>Submit</button>
+                style={{borderRadius: "5px", border: "1px solid black", fontSize: "35px", marginLeft: "10%"}} onClick={ submit }>Submit</button>
 		</div>
 	);
 }

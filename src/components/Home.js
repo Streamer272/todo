@@ -1,9 +1,22 @@
-import {useCookies} from "react-cookie";
-import {useState} from "react";
+import { useState } from "react";
+import { useCookies } from "react-cookie";
 // Components
 import { Task } from "./Task";
 // Images
 import AddImage from "../images/add.png";
+
+
+function removeAt(array, index) {
+	let removedArray = [];
+
+	for (let i = 0; i < array.length; i++) {
+		if (i !== index) {
+			removedArray.push(array[i]);
+		}
+	}
+
+	return removedArray;
+}
 
 
 const Home = () => {
@@ -17,16 +30,11 @@ const Home = () => {
 
 	const deleteTask = (task) => {
 		if (tasks.includes(task)) {
-			console.log("Deleting task " + task + "...");
-
-			const updatedTasks = tasks.splice(tasks.indexOf(task), 1);
-			setTasksTo(updatedTasks);
+			setTasksTo(removeAt(tasks, tasks.indexOf(task)));
 		}
 	}
 
-	window.onload = () => {
-    	console.log(tasks);
-	};
+	window.onload = () => {};
 
 	return (
 		<div>
