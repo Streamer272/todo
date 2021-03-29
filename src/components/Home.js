@@ -20,8 +20,8 @@ function removeAt(array, index) {
 
 
 const Home = () => {
-	const [cookies, setCookie] = useCookies(["data"]);
-	const [tasks, setTasks] = useState(cookies["tasks"]);
+	const [cookies, setCookie] = useCookies(["tasks"]);
+	const [tasks, setTasks] = useState(cookies["tasks"] || []);
 
     const setTasksTo = (object) => {
         setCookie("tasks", object);

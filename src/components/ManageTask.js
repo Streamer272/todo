@@ -2,7 +2,7 @@ import { useCookies } from "react-cookie";
 
 
 const CreateTask = () => {
-	const [cookies, setCookie] = useCookies(["data"]);
+	const [cookies, setCookie] = useCookies(["tasks"]);
 
     const submit = () => {
         const taskName = document.getElementById("taskName").value;
@@ -43,9 +43,11 @@ const EditTask = () => {
     let nameBefore = urlData.split("&")[0].replace("name=", "");
     let descriptionBefore = urlData.split("&")[1].replace("desc=", "");
 
-    const [cookies, setCookie] = useCookies(["data"]);
+    const [cookies, setCookie] = useCookies(["tasks"]);
 
     const submit = () => {
+        console.log(cookies);
+
         const taskName = document.getElementById("taskName").value;
         const taskDescription = document.getElementById("taskDescription").value;
 
@@ -61,7 +63,7 @@ const EditTask = () => {
         setCookie("tasks", tasks);
 
         console.log(cookies);
-        window.location = "/";
+        // window.location = "/";
     }
 
     window.onload = () => {
@@ -74,6 +76,9 @@ const EditTask = () => {
 
         document.getElementById("taskName").value = nameBefore;
         document.getElementById("taskDescription").value = descriptionBefore;
+
+        console.log(cookies);
+        console.log(cookies["tasks"]);
     }
 
     return (
