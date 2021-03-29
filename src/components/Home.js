@@ -34,6 +34,17 @@ const Home = () => {
 		}
 	}
 
+	const editTask = (task) => {
+    	if (tasks.includes(task)) {
+    		let targetedWindowLocation = "/editTask/name=" + task.name + "&desc=" + task.description;
+    		while (targetedWindowLocation.includes(" ")) {
+    			targetedWindowLocation = targetedWindowLocation.replace(" ", "%20");
+			}
+
+			window.location = targetedWindowLocation;
+		}
+	}
+
 	window.onload = () => {};
 
 	return (
@@ -44,7 +55,7 @@ const Home = () => {
 			</button>
 
 			<div>
-				{tasks.map((task) => <Task taskData={ task } deleteCallback={ deleteTask } />)}
+				{tasks.map((task) => <Task taskData={ task } deleteCallback={ deleteTask } editCallback={ editTask } />)}
 			</div>
 		</div>
 	);
